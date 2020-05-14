@@ -1,6 +1,12 @@
 # The The Board Game 
 The Board Game is a practice task that include work with Message Queue, DB, APi and Worker
 
+We have online game platform. 
+There are many games and a lot of players.
+Every player have number of points that he collected started from first game. 
+Number of points could be changed up to several times per game
+Also we have the scores where displayed in special window. 
+
 ## API
 You need to implement two endpoints, that described in the **swagger.yml** file inside of **api** folder
 
