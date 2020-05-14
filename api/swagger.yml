@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+    description: This swagger documentation represent API that you have to implement for pass Board Game task
+    title: Board Game
+    version: 0.0.1
+host: localhost
+schemes:
+    - http
+basePath: /api
+paths:
+    /scores:
+        get:
+            produces:
+                - application/json
+            responses:
+                '200':
+                    $ref: '#/responses/Scores'
+                '500':
+                    $ref: '#/responses/InternalServerError'
+    '/users/{user-id}/points/{number-of-points}':
+        post:
+            produces:
+                - application/json
+            parameters:
+                -   type: string
+                    description: user id
+                    name: user-id
+                    in: path
+                    required: true
+                -   type: integer
+                    description: number of points that we need to add for current user
+                    name: number-of-points
+                    in: path
+                    required: true
+                    minimum: 1
+            responses:
+                '202':
+                    $ref: '#/responses/StatusAccepted'
+                '500':
+                    $ref: '#/responses/InternalServerError'
+
+responses:
+    Scores:
+        description: List of files for the simulation
+        schema:
+            type: array
+            items:
+                type: object
+                properties:
+                    user-id:
+                        type: string
+                        format: uuid
+                    score:
+                        type: integer
+
+    StatusAccepted:
+        description: Points was accepted for processing
+
+    InternalServerError:
+        description: Internal error
