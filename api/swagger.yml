@@ -10,6 +10,7 @@ basePath: /api
 paths:
     /scores:
         get:
+            description: This endpoint must return scores for all user from DB
             produces:
                 - application/json
             responses:
@@ -19,6 +20,7 @@ paths:
                     $ref: '#/responses/InternalServerError'
     '/users/{user-id}/points/{number-of-points}':
         post:
+            description: This endpoint must publish message to queue
             produces:
                 - application/json
             parameters:
@@ -36,6 +38,8 @@ paths:
             responses:
                 '202':
                     $ref: '#/responses/StatusAccepted'
+                '400':
+                    $ref: '#/responses/BadRequest'
                 '500':
                     $ref: '#/responses/InternalServerError'
 
@@ -55,6 +59,9 @@ responses:
 
     StatusAccepted:
         description: Points was accepted for processing
+
+    BadRequest:
+        description: Some of the params does not pass the criteria
 
     InternalServerError:
         description: Internal error
