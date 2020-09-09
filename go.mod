@@ -1,4 +1,4 @@
-module board-game
+module github.com/yushni/board-game
 
 go 1.14
 
